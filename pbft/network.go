@@ -43,7 +43,7 @@ func NewNetwork(total, faulty int) *Network {
 		network.Nodes[i] = &Node{
 			ID:         i,
 			State:      NORMAL,
-			View:       0,
+			View:       3,
 			Log:        make([]Message, 0),
 			PrepareMsg: make(map[string]map[int]bool),
 			CommitMsg:  make(map[string]map[int]bool),

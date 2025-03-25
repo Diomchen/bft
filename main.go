@@ -32,6 +32,10 @@ func main() {
 	h.Write([]byte(request.Content))
 	request.Digest = hex.EncodeToString(h.Sum(nil))
 
+	// 客户端先处理自己的请求
+	fmt.Println("Client node sending request:", request.Content)
+	network.Nodes[clientNode].ReceiveMessage(request, *network)
+
 	// 广播 REQUEST 消息
 	fmt.Printf("Broadcasting REQUEST message from node %d to node %d\n", clientNode, request.To)
 	network.Nodes[clientNode].Broadcast(request, *network)
